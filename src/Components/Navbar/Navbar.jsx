@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,14 +19,11 @@ const Navbar = () => {
     };
   }, []);
 
+
   return (
-    <div className={`sticky top-0`}>
-      <header>
-        <div
-          className={`relative z-20 ${
-            isScrolled ? "bg-white" : "bg-[#0890F3]"
-          }`}
-        >
+    <div  className={`sticky top-0 z-50 lg:relative lg:z-auto ${isScrolled ? "bg-white shadow" : ""}`}>
+      <header >
+        <div className="relative z-20  bg-[#0890F3]">
           <div className="px-6 md:px-12 lg:container lg:mx-auto lg:px-6 lg:py-4">
             <div className="flex items-center justify-between">
               <div className="relative z-30">
@@ -74,39 +71,39 @@ const Navbar = () => {
                 </label>
 
                 <div
-                  className={`peer-checked:translate-y-0 fixed inset-0 h-screen w-screen translate-y-[-100%] border-b ${
-                    isScrolled ? "bg-white" : "bg-[#0890F3]"
+                  className={`peer-checked:translate-y-0 fixed inset-0 h-screen w-screen translate-y-[-100%] border-b 
+                 bg-[#0890F3]
                   } lg:border-b-0 lg:h-auto lg:w-auto lg:static lg:shadow-none lg:translate-y-0 z-20`}
                 >
                   <div className="flex flex-col h-full justify-between lg:items-center lg:flex-row">
                     <ul className="px-6 pt-32 text-gray-700 space-y-8 md:px-12 lg:space-y-0 lg:flex lg:space-x-12 lg:pt-0">
                       <li>
-                        <a href="#">
+                      <Link to="/" >
                           <span className="text-white  text_lato relative lg:text-base  font-semibold">
-                            How it works
+                            Home
                           </span>
-                        </a>
+                          </Link>
                       </li>
                       <li>
-                        <a href="#">
+                      <Link to="/price&services" >
                           <span className="text-white  text_lato relative lg:text-base  font-semibold">
                             Prices & Services
                           </span>
-                        </a>
+                          </Link>
                       </li>
                       <li>
-                        <a href="#">
+                      <Link to="/contact" >
                           <span className="text-white  text_lato relative lg:text-base  font-semibold">
-                            About us
+                            Contact us
                           </span>
-                        </a>
+                          </Link>
                       </li>
                       <li>
-                        <a href="#">
+                      <Link to="/faq" >
                           <span className="text-white text_lato relative lg:text-base  font-semibold">
                             FAQ
                           </span>
-                        </a>
+                          </Link>
                       </li>
                     </ul>
 

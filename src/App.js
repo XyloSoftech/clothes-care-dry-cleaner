@@ -1,12 +1,19 @@
+// App.js
+
 import React from "react";
-import Home from "./Components/Home";
-import "./App.css";
-function App() {
+import { BrowserRouter as Router } from "react-router-dom";
+
+import AppRoutes from "./Components/routes/Approutes";
+import Layout from "./Components/Layout";
+
+const App = () => {
   return (
-    <div>
-      <Home />
-    </div>
+    <Router>
+      <Layout>
+        <AppRoutes />
+      </Layout>
+    </Router>
   );
-}
+};
 
 export default App;
