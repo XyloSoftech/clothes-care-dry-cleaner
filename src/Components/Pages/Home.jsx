@@ -1,13 +1,18 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
-import { Col, Row } from "antd";
+import { Button, Col, Row } from "antd";
 import Image1 from "../../images/freedomlaundry.avif";
 import WashImage from "../../images/wash_big.png";
 import DryCleaning from "../../images/dry_cleaning_big.png";
 import WashIron from "../../images/wash_and_iron_big.png";
 import { Card } from "antd";
+import { useNavigate } from "react-router-dom";
 const { Meta } = Card;
 const Home = () => {
+  const Navigate = useNavigate();
+  const navigateToServices = () => {
+    Navigate("/Services");
+  };
   return (
     <div>
       {/* Header */}
@@ -169,8 +174,10 @@ const Home = () => {
 
         {/* Pricing Cards */}
         <div>
-          <h1>Our Services</h1>
-          <Row className="items-center text-start mt-20">
+          <h1 className="text_lato text-3xl font-semibold text-center my-10">
+            Our Services
+          </h1>
+          <Row className="items-center text-start">
             <Col sm={24} md={24} lg={8} className="px-10">
               <Card hoverable className="service_card_content">
                 <img src={WashImage} alt="no image found" className="w-1/2" />
@@ -202,6 +209,14 @@ const Home = () => {
               </Card>
             </Col>
           </Row>
+          <Button
+            type="primary"
+            className="bg-[#0890F3] mt-5 rounded-2xl"
+            size="large"
+            onClick={() => navigateToServices()}
+          >
+            Explore More
+          </Button>
         </div>
         {/* Pricing Cards */}
       </section>

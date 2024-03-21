@@ -13,6 +13,11 @@ const Footer = () => {
         referrerPolicy="no-referrer-when-downgrade"
         title="Google Map"
       ></iframe>
+
+      <div >
+          
+
+      </div>
     </div>
   );
 };
