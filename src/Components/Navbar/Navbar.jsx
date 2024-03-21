@@ -21,7 +21,7 @@ const Navbar = () => {
 
 
   return (
-    <div  className={`sticky top-0 z-50 lg:relative lg:z-auto ${isScrolled ? "bg-white shadow" : ""}`}>
+    <div  className={`sticky top-0 z-50 lg:relative lg:z-auto ${isScrolled ? "bg-white" : ""}`}>
       <header >
         <div className="relative z-20  bg-[#0890F3]">
           <div className="px-6 md:px-12 lg:container lg:mx-auto lg:px-6 lg:py-4">
@@ -101,12 +101,13 @@ const Navbar = () => {
                       <li>
                       <Link to="/faq" >
                           <span className="text-white text_lato relative lg:text-base  font-semibold">
-                            FAQ
+                          How it works
                           </span>
                           </Link>
                       </li>
                     </ul>
 
+                    <Link to="/contact" >
                     <div className="py-8 px-6 md:px-12 md:py-16 lg:border-t-0 lg:py-0 lg:pr-0 lg:pl-6">
                       <a
                         href="#"
@@ -115,6 +116,7 @@ const Navbar = () => {
                         Book Now
                       </a>
                     </div>
+                    </Link>
                   </div>
                 </div>
               </div>
