@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -13,11 +14,73 @@ const Footer = () => {
         referrerPolicy="no-referrer-when-downgrade"
         title="Google Map"
       ></iframe>
-
-      <div >
-          
-
-      </div>
+      <footer className="bg-[#0890F3] text-white px-6 py-8">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 className="text-lg font-semibold mb-2">
+              <Link to="/">
+                <img
+                  src="https://tailus.io/sources/blocks/navigation-layout/preview/images/logo.svg"
+                  alt="logo-tailus"
+                  className="w-32"
+                />
+              </Link>
+            </h3>
+            <p className="text-sm">
+              "Exceptional cloth washing and laundry service. Expert care,
+              eco-friendly products. Convenience guaranteed. Experience
+              freshness and quality with every garment."
+            </p>
+          </div>
+          <div className="text-center">
+            <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
+            <ul className="text-sm space-y-2">
+              <li>
+                <Link to="/about">Home</Link>
+              </li>
+              <li>
+                <Link to="/services">Prices & Services</Link>
+              </li>
+              <li>
+                <Link to="/blog">Contact us</Link>
+              </li>
+              <li>
+                <Link to="/contact">How it works</Link>
+              </li>
+            </ul>
+          </div>
+        
+          <div className="flex flex-col space-y-2 text-center">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-500"
+            >
+              Twitter
+            </a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-500"
+            >
+              Facebook
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-500"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <div className="border-t border-white-700 mt-8 pt-6 text-center text-sm">
+          &copy; {new Date().getFullYear()} Clothes Care Dry Cleaner. All Rights Reserved
+        </div>
+      </footer>
     </div>
   );
 };
