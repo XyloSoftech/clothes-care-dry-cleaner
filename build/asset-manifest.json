@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1afb4a85.css",
+    "main.js": "/static/js/main.e4bf48c0.js",
+    "static/media/freedomlaundry.avif": "/static/media/freedomlaundry.137a64d7b415c6a5422a.avif",
+    "static/media/wash_big.png": "/static/media/wash_big.a759a87543f65f2c0e8c.png",
+    "static/media/dry_cleaning_big.png": "/static/media/dry_cleaning_big.9f96c7e24b41f57d4a2b.png",
+    "static/media/wash_and_iron_big.png": "/static/media/wash_and_iron_big.f8f1dacf12cd18ba4684.png",
+    "index.html": "/index.html",
+    "main.1afb4a85.css.map": "/static/css/main.1afb4a85.css.map",
+    "main.e4bf48c0.js.map": "/static/js/main.e4bf48c0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1afb4a85.css",
+    "static/js/main.e4bf48c0.js"
+  ]
+}
