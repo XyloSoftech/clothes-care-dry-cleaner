@@ -26,7 +26,7 @@ const Footer = () => {
                 />
               </Link>
             </h3>
-            <p className="text-sm">
+            <p className="text-base">
               "Exceptional cloth washing and laundry service. Expert care,
               eco-friendly products. Convenience guaranteed. Experience
               freshness and quality with every garment."
@@ -34,7 +34,7 @@ const Footer = () => {
           </div>
           <div className="text-center">
             <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
-            <ul className="text-sm space-y-2">
+            <ul className="text-base space-y-2">
               <li>
                 <Link to="/about">Home</Link>
               </li>
@@ -49,7 +49,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-        
+
           <div className="flex flex-col space-y-2 text-center">
             <a
               href="https://twitter.com"
@@ -78,7 +78,8 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-white-700 mt-8 pt-6 text-center text-sm">
-          &copy; {new Date().getFullYear()} Clothes Care Dry Cleaner. All Rights Reserved
+          &copy; {new Date().getFullYear()} Clothes Care Dry Cleaner. All Rights
+          Reserved
         </div>
       </footer>
     </div>

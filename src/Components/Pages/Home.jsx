@@ -2,6 +2,7 @@
 import React from "react";
 import { Button, Col, Row } from "antd";
 import Image1 from "../../images/freedomlaundry.avif";
+import Image2 from "../../images/order.avif";
 import WashImage from "../../images/wash_big.png";
 import DryCleaning from "../../images/dry_cleaning_big.png";
 import WashIron from "../../images/wash_and_iron_big.png";
@@ -13,6 +14,30 @@ const Home = () => {
   const navigateToServices = () => {
     Navigate("/Services");
   };
+  const services = [
+    {
+      image: WashImage,
+      alt: "no image found",
+      title: "Service wash",
+      description:
+        "Convenient laundry service, providing clean clothes without the hassle of washing and drying.",
+    },
+    {
+      image: DryCleaning,
+      alt: "no image found",
+      title: "Dry Cleaning",
+      description:
+        "Professional care for delicate fabrics, ensuring garments receive meticulous cleaning and attention to detail.",
+    },
+    {
+      image: WashIron,
+      alt: "no image found",
+      title: "Shirts service",
+      description:
+        "Tailored cleaning process for shirts, maintaining quality, crispness, and professional appearance.",
+    },
+  ];
+
   return (
     <div>
       {/* Header */}
@@ -140,13 +165,13 @@ const Home = () => {
           </Col>
           <Col sm={24} md={24} lg={12} className="px-20">
             <img
-              src={Image1}
+              src={Image2}
               alt="No image found"
               // className="img-fluid w-1/2"
             />
           </Col>
 
-          <Col sm={24} md={24} lg={12} className="px-20">
+          {/* <Col sm={24} md={24} lg={12} className="px-20">
             <img
               src={Image1}
               alt="No image found"
@@ -166,8 +191,8 @@ const Home = () => {
               and night.
             </p>
 
-            {/* <p className="text-[#0890F3]">See How its Works ?</p> */}
-          </Col>
+        
+          </Col> */}
         </Row>
 
         {/*  how it works portion End */}
@@ -178,37 +203,21 @@ const Home = () => {
             Our Services
           </h1>
           <Row className="items-center text-start">
-            <Col sm={24} md={24} lg={8} className="px-10">
-              <Card hoverable className="service_card_content">
-                <img src={WashImage} alt="no image found" className="w-1/2" />
-                <p className="text-2xl font-medium my-4">Wash</p>
-                <Meta
-                  title="Europe Street beatfdfdf"
-                  description="www.instagram.comfdfd"
-                />
-              </Card>
-            </Col>
-            <Col sm={24} md={24} lg={8} className="px-10">
-              <Card hoverable className="service_card_content">
-                <img src={DryCleaning} alt="no image found" className="w-1/2" />
-                <p className="text-2xl font-medium my-4">Dry Cleaning</p>
-                <Meta
-                  title="Europe Street beatfdfdf"
-                  description="www.instagram.comfdfd"
-                />
-              </Card>
-            </Col>
-            <Col sm={24} md={24} lg={8} className="px-10">
-              <Card hoverable className="service_card_content">
-                <img src={WashIron} alt="no image found" className="w-1/2" />
-                <p className="text-2xl font-medium my-4">Wash & Iron</p>
-                <Meta
-                  title="Europe Street beatfdfdf"
-                  description="www.instagram.comfdfd"
-                />
-              </Card>
-            </Col>
+            {services.map((service, index) => (
+              <Col key={index} sm={24} md={24} lg={8} className="px-10">
+                <Card hoverable className="service_card_content">
+                  <img
+                    src={service.image}
+                    alt={service.alt}
+                    className="w-1/2"
+                  />
+                  <p className="text-2xl font-medium my-4">{service.title}</p>
+                  <Meta description={service.description} />
+                </Card>
+              </Col>
+            ))}
           </Row>
+
           <Button
             type="primary"
             className="bg-[#0890F3] mt-5 rounded-2xl"

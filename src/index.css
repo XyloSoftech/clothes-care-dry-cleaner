@@ -21,3 +21,8 @@ body {
 .service_card_content .ant-card-body {
   text-align: -webkit-center;
 }
+.servicesCards .ant-card-meta-detail .ant-card-meta-title {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: "Lato", sans-serif;
+}
