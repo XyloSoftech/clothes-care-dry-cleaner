@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 const Navbar = () => {
@@ -20,12 +19,8 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div
-      className={`sticky top-0 z-50 lg:relative lg:z-auto ${
-        isScrolled ? "bg-white" : ""
-      }`}
-    >
-      <header>
+    <div  className={`sticky top-0 z-50 lg:relative lg:z-auto`}>
+      <header >
         <div className="relative z-20  bg-[#0890F3]">
           <div className="px-6 md:px-12 lg:container lg:mx-auto lg:px-6 lg:py-4">
             <div className="flex items-center justify-between">
