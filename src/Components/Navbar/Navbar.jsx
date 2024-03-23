@@ -18,7 +18,6 @@ const Navbar = () => {
     };
   }, []);
 
-
   return (
     <div  className={`sticky top-0 z-50 lg:relative lg:z-auto`}>
       <header >
@@ -77,44 +76,44 @@ const Navbar = () => {
                   <div className="flex flex-col h-full justify-between lg:items-center lg:flex-row">
                     <ul className="px-6 pt-32 text-gray-700 space-y-8 md:px-12 lg:space-y-0 lg:flex lg:space-x-12 lg:pt-0">
                       <li>
-                      <Link to="/" >
+                        <Link to="/">
                           <span className="text-white  text_lato relative lg:text-base  font-semibold">
                             Home
                           </span>
-                          </Link>
+                        </Link>
                       </li>
                       <li>
-                      <Link to="/price&services" >
+                        <Link to="/Services">
                           <span className="text-white  text_lato relative lg:text-base  font-semibold">
                             Prices & Services
                           </span>
-                          </Link>
+                        </Link>
                       </li>
                       <li>
-                      <Link to="/contact" >
+                        <Link to="/contact">
                           <span className="text-white  text_lato relative lg:text-base  font-semibold">
-                            Contact us
+                            Order Details
                           </span>
-                          </Link>
+                        </Link>
                       </li>
-                      <li>
-                      <Link to="/faq" >
+                      {/* <li>
+                        <Link to="/faq">
                           <span className="text-white text_lato relative lg:text-base  font-semibold">
-                          How it works
+                            How it works
                           </span>
-                          </Link>
-                      </li>
+                        </Link>
+                      </li> */}
                     </ul>
 
-                    <Link to="/contact" >
-                    <div className="py-8 px-6 md:px-12 md:py-16 lg:border-t-0 lg:py-0 lg:pr-0 lg:pl-6">
-                      <a
-                        href="#"
-                        className="block px-6 py-3 rounded-lg bg-gradient-to-r from-sky-600 to-cyan-400 text-center text-white"
-                      >
-                        Book Now
-                      </a>
-                    </div>
+                    <Link to="/contact">
+                      <div className="py-8 px-6 md:px-12 md:py-16 lg:border-t-0 lg:py-0 lg:pr-0 lg:pl-6">
+                        <a
+                          href="#"
+                          className="block px-6 py-3 rounded-lg bg-gradient-to-r from-sky-600 to-cyan-400 text-center text-white"
+                        >
+                          Book Now
+                        </a>
+                      </div>
                     </Link>
                   </div>
                 </div>

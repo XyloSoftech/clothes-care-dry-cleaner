@@ -8,7 +8,6 @@ import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { firebaseConfig } from "../../firebaseConfig";
 import { sendEmail } from "../../utills/emailSend";
 
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -68,10 +67,12 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="my-10">
-      <h1 className="text-center text-4xl font-semibold text_lato">
-        Order Details
-      </h1>
+    <div>
+      <div className=" bg-[#0890F3] py-14 ">
+        <h1 className="text-center text-5xl font-semibold text_lato text-white">
+          Order Details
+        </h1>
+      </div>
 
       <Row className="my-10">
         <Col
