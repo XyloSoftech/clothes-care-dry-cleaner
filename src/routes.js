@@ -12,6 +12,8 @@ const routes = [
   { path: "/faq", element: <Faq /> },
   { path: "/admin", element: <Adminside /> },
   { path: "/Login", element: <AdminLogin /> },
+ 
+  
 ];
 
 export default routes;
