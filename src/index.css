@@ -26,3 +26,10 @@ body {
   font-weight: 700;
   font-family: "Lato", sans-serif;
 }
+.subServicesMain {
+  border-bottom: 1px solid #d3d1d1;
+  margin-bottom: 15px;
+}
+.ant-list-item {
+  margin-bottom: 0px;
+}
