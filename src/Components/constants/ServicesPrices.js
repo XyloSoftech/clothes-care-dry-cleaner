@@ -1,5 +1,5 @@
 export const DryCleaningPrices = [
-  { item: "Two piece suit", price: 14.99  },
+  { item: "Two piece suit", price: 14.99 },
   { item: "Three piece suit", price: 19.5 },
   { item: "Dinner suit", price: 16.5 },
   { item: "Dinner suit three piece", price: 21.99 },
@@ -27,7 +27,10 @@ export const DryCleaningPrices = [
   { item: "Pashmina", price: 8.5 },
   { item: "Gown", price: 13.89 },
   { item: "Jeans", price: 7.5 },
-  { item: "Children's items (dry clean)", price: "£0.00(children’s items will bế invoice at 65% of aduit prices)" },
+  {
+    item: "Children's items (dry clean)",
+    price: "£0.00(children’s items will bế invoice at 65% of aduit prices)",
+  },
 ];
 
 export const ShirtsServicePrices = [
@@ -184,86 +187,81 @@ export const AlterationsAndRepairPrices = [
   { item: "Trouser waist in / waist out", price: 16 },
 ];
 
-
-
-
 export const services = [
   {
-    name: "Drycleaning",
+    name: "Dry Cleaning",
     description:
       "Professional care for delicate fabrics, ensuring garments receive meticulous cleaning and attention to detail.",
     ServiceDetail: [...DryCleaningPrices],
   },
   {
-    name: "Shirts service",
+    name: "Shirts Service",
     description:
       "Tailored cleaning process for shirts, maintaining quality, crispness, and professional appearance.",
-      ServiceDetail: [...ShirtsServicePrices],
+    ServiceDetail: [...ShirtsServicePrices],
   },
   {
     name: "Laundry",
     description:
       "Comprehensive cleaning service for everyday clothing, linens, and towels, ensuring freshness and cleanliness.",
-      ServiceDetail: [...LaundryServicePrices],
+    ServiceDetail: [...LaundryServicePrices],
   },
   {
-    name: "Ski sportswear",
+    name: "Ski Sportswear",
     description:
       "Specialized cleaning and maintenance for ski gear, preserving performance and durability for slopes.",
-      ServiceDetail: [...SkiSportswearPrices],
+    ServiceDetail: [...SkiSportswearPrices],
   },
   {
     name: "Household",
     description:
       "Refreshing household items including cushions, rugs, and drapes with meticulous cleaning care.",
-      ServiceDetail: [...HouseholdPrices],
+    ServiceDetail: [...HouseholdPrices],
   },
   {
-    name: "Furniture covers",
+    name: "Furniture Covers",
     description:
       "Revitalizing furniture covers with professional cleaning, ensuring vibrancy and longevity for furnishings.",
-      ServiceDetail: [...FurnitureCoverPrices],
+    ServiceDetail: [...FurnitureCoverPrices],
   },
   {
-    name: "Leather, fur and suede",
+    name: "Leather, Fur and Suede",
     description:
       "Expert cleaning for luxury items, preserving texture and appearance of leather, fur, and suede.",
-    
   },
   {
     name: "Curtains",
     description:
       "Gentle yet effective cleaning process to remove dust, dirt, and stains, restoring curtain beauty.",
-      ServiceDetail: [...CurtainCleaningPrices],
+    ServiceDetail: [...CurtainCleaningPrices],
   },
   {
-    name: "Wedding dresses",
+    name: "Wedding Dresses",
     description:
       "Preserving wedding gown beauty with specialized cleaning, ensuring pristine condition and sentimental value.",
-      ServiceDetail: [...WeddingDressCleaningPrice],
+    ServiceDetail: [...WeddingDressCleaningPrice],
   },
   {
-    name: "Service wash",
+    name: "Service Wash",
     description:
       "Convenient laundry service, providing clean clothes without the hassle of washing and drying.",
-      ServiceDetail: [...ServiceWashPrice],
+    ServiceDetail: [...ServiceWashPrice],
   },
   {
     name: "Duvet and bed linen",
     description:
       "Restful sleep with fresh duvet and linen cleaning, removing dirt and allergens.",
-      ServiceDetail: [...DuvetAndBedLinenPrices],
+    ServiceDetail: [...DuvetAndBedLinenPrices],
   },
   {
-    name: "Alterations and repair",
+    name: "Alterations and Repair",
     description:
       "Skilled tailoring for garment alterations and repairs, ensuring the perfect fit and craftsmanship.",
-      ServiceDetail: [...AlterationsAndRepairPrices],
+    ServiceDetail: [...AlterationsAndRepairPrices],
   },
   {
-    name: "Specialist and delicate items",
+    name: "Specialist and Delicate items",
     description:
       "Meticulous care for delicate fabrics and intricate designs, providing specialized cleaning attention.",
-    
   },
 ];
