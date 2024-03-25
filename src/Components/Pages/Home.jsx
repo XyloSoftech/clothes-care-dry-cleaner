@@ -8,6 +8,7 @@ import DryCleaning from "../../images/dry_cleaning_big.png";
 import WashIron from "../../images/wash_and_iron_big.png";
 import { Card } from "antd";
 import { useNavigate } from "react-router-dom";
+import LottieComponent from "../lottie/LottieComponent";
 const { Meta } = Card;
 const Home = () => {
   const Navigate = useNavigate();
@@ -43,7 +44,7 @@ const Home = () => {
       {/* Header */}
       <header className="flex justify-center items-center p-5 bg-[#0890F3]">
         <div className="container flex justify-center">
-          <Row gutter={24}>
+          <Row gutter={24} className="items-center">
             <Col sm={24} md={24} lg={12}>
               <div className="text-white text-center text_lato text-xl md:text-4xl lg:text-6xl font-semibold lg:mt-20 sm:mt-4 md:mt-4">
                 Laundry & dry <br /> cleaning with 24h <br /> delivery in
@@ -52,11 +53,7 @@ const Home = () => {
               </div>
             </Col>
             <Col sm={24} md={24} lg={12} className="hidden md:block">
-              <img
-                className="h-auto w-full md:max-w-full md:h-auto md:w-full object-cover object-center"
-                src="https://prod-cdn.laundryheap.com/assets/landing/hero/europe_2x-84ba6531f5d54ec36e102db75557217e96b2af462f95154931d2202acdb33bfa.avif"
-                alt="Logo"
-              />
+              <LottieComponent />
             </Col>
           </Row>
         </div>
