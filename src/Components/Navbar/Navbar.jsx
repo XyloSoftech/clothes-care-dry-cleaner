@@ -1,4 +1,4 @@
-
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 const Navbar = () => {
@@ -19,19 +19,19 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div  className={`sticky top-0 z-50 lg:relative lg:z-auto`}>
-      <header >
+    <div className={`sticky top-0 z-50 lg:relative lg:z-auto`}>
+      <header>
         <div className="relative z-20  bg-[#0890F3]">
           <div className="px-6 md:px-12 lg:container lg:mx-auto lg:px-6 lg:py-4">
             <div className="flex items-center justify-between">
               <div className="relative z-30">
-                <a href="#">
+                <Link to="/">
                   <img
                     src="https://tailus.io/sources/blocks/navigation-layout/preview/images/logo.svg"
                     alt="logo-tailus"
                     className="w-32"
                   />
-                </a>
+                </Link>
               </div>
 
               <div className="flex items-center justify-end  lg:border-l-0">
@@ -107,12 +107,12 @@ const Navbar = () => {
 
                     <Link to="/contact">
                       <div className="py-8 px-6 md:px-12 md:py-16 lg:border-t-0 lg:py-0 lg:pr-0 lg:pl-6">
-                        <a
-                          href="#"
+                        <Link
+                          to="/"
                           className="block px-6 py-3 rounded-lg bg-gradient-to-r from-sky-600 to-cyan-400 text-center text-white"
                         >
                           Book Now
-                        </a>
+                        </Link>
                       </div>
                     </Link>
                   </div>
