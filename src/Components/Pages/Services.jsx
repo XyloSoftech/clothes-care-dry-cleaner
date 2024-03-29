@@ -1,20 +1,44 @@
-import React, { useState } from "react";
-import { Card, Row, Col, Button } from "antd";
-import { services } from "../constants/ServicesPrices";
-import ServicesDetail from "./ServiceDetailPage";
+import React, { useState, useEffect } from "react";
+import { Card, Row, Col, Button, Spin } from "antd"; // Import Spin component for loader
+import { initializeApp } from "firebase/app";
+import { useNavigate } from "react-router-dom";
 import { EyeOutlined } from "@ant-design/icons";
+import { firebaseConfig } from "../../firebaseConfig";
+import { collection, getFirestore, onSnapshot } from "firebase/firestore";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 const { Meta } = Card;
 
 const Services = () => {
-  const [showDetails, setShowDetails] = useState([]);
 
-  const handleExplore = (index) => {
-    setShowDetails((prev) => [...prev, index]);
-  };
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true); // State to track loading status
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "Service"), (snapshot) => {
+      const servicesData = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setServices(servicesData);
+      setLoading(false); // Set loading to false when data is fetched
+    });
+
+    // Cleanup function to unsubscribe from the snapshot listener when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
+ 
 
   return (
     <>
-      {showDetails.length === 0 && (
+      {loading ? ( // Display loader if loading is true
+        <div className="text-center py-4">
+          <Spin size="large" />
+        </div>
+      ) : (
         <div>
           <div className="bg-[#0890F3] py-14 ">
             <h1 className="text-center text-5xl font-semibold text_lato text-white">
@@ -31,11 +55,13 @@ const Services = () => {
                       title={service.name}
                       description={service.description}
                     />
-                    {service.ServiceDetail && ( // Check if ServiceDetail is present
+                    {service.description && ( // Check if ServiceDetail is present
                       <Button
                         type="primary"
                         className="mt-4 bg-[#0890F3]"
-                        onClick={() => handleExplore(index)}
+                        onClick={() =>
+                          navigate(`/ServiceDetail/${service.id}/${service.name}`)
+                        }
                       >
                         <div className="flex gap-2">
                           <EyeOutlined /> <span>Explore</span>
@@ -49,15 +75,6 @@ const Services = () => {
           </div>
         </div>
       )}
-
-      {showDetails.map((index) => (
-        <ServicesDetail
-          key={index}
-          data={services[index].ServiceDetail}
-          serviceName={services[index].name}
-          setShowDetails={setShowDetails}
-        />
-      ))}
     </>
   );
 };

@@ -12,6 +12,8 @@ import {
 } from "firebase/firestore";
 import { firebaseConfig } from "../../firebaseConfig";
 import { DownOutlined } from "@ant-design/icons";
+import ServiceCreationandUpdation from "../ServiceCreationandUpdation/ServiceCreationandUpdation";
+import AdminSideNav from "../AdminSideNav/AdminSideNav";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -33,20 +35,19 @@ function Adminside() {
       };
       fetchData();
     }
-  }, []);
-  const logout = () => {
-    localStorage.removeItem("token");
-
-    navigate("/Login");
-  };
+  }, [navigate]);
 
   const handleStatusChange = async (key, newStatus) => {
     try {
-      await updateDoc(doc(db, "Orders", key), { Status: newStatus });
-      const updatedDataSource = dataSource.map((data) =>
-        data.key === key ? { ...data, Status: newStatus } : data
-      );
-      setDataSource(updatedDataSource);
+      if (["Pending", "Cancelled", "Fulfilled"].includes(newStatus)) {
+        await updateDoc(doc(db, "Orders", key), { Status: newStatus });
+        const updatedDataSource = dataSource.map((data) =>
+          data.key === key ? { ...data, Status: newStatus } : data
+        );
+        setDataSource(updatedDataSource);
+      } else {
+        console.error("Invalid status:", newStatus);
+      }
     } catch (error) {
       console.error("Error updating status:", error);
     }
@@ -78,6 +79,32 @@ function Adminside() {
       key: "address",
     },
     {
+      title: "Services Ordered",
+      key: "servicesOrdered",
+      render: (text, record) => (
+        <>
+          {record.serviceNames || record.totalPrice ? (
+            <>
+              {record.serviceNames && (
+                <p>
+                  <span className="font-bold">Service Names:</span>{" "}
+                  {record.serviceNames}
+                </p>
+              )}
+              <br />
+              {record.totalPrice && (
+                <p>
+                  <span className="font-bold">Price:</span> {record.totalPrice}£
+                </p>
+              )}
+            </>
+          ) : (
+            <p>Details provided in the order</p>
+          )}
+        </>
+      ),
+    },
+    {
       title: "Order Placed At",
       dataIndex: "submittedAt",
       key: "submittedAt",
@@ -96,28 +123,31 @@ function Adminside() {
           <Menu>
             <Menu.Item
               key="0"
-              onClick={() => handleStatusChange(record.key, false)}
+              onClick={() => handleStatusChange(record.key, "Pending")}
             >
               Pending
             </Menu.Item>
             <Menu.Item
               key="1"
-              onClick={() => handleStatusChange(record.key, true)}
+              onClick={() => handleStatusChange(record.key, "Fulfilled")}
             >
               Fulfilled
+            </Menu.Item>
+            <Menu.Item
+              key="2"
+              onClick={() => handleStatusChange(record.key, "Cancelled")}
+            >
+              Cancelled
             </Menu.Item>
           </Menu>
         );
 
         return (
           <Dropdown overlay={menu} trigger={["click"]}>
-            <a
-              className="ant-dropdown-link"
-              onClick={(e) => e.preventDefault()}
-            >
-              {Status ? "Fulfilled" : "Pending"} <DownOutlined />
-            </a>
-          </Dropdown>
+          <button className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+            {Status} <DownOutlined />
+          </button>
+        </Dropdown>
         );
       },
     },
@@ -130,47 +160,22 @@ function Adminside() {
 
   return (
     <div>
-      <div className={`sticky top-0 z-50 lg:relative lg:z-auto`}>
-        <header>
-          <div className="relative z-20  bg-[#0890F3]">
-            <div className="px-6 md:px-12 lg:container lg:mx-auto lg:px-6 lg:py-4">
-              <div className="flex items-center justify-between">
-                <div className="relative z-30">
-                  <a href="#">
-                    <img
-                      src="https://tailus.io/sources/blocks/navigation-layout/preview/images/logo.svg"
-                      alt="logo-tailus"
-                      className="w-32"
-                    />
-                  </a>
-                </div>
-                <h1 className="text-2xl font-bold text-center text-white ">
-                  Admin Dashboard
-                </h1>
-                <div className="flex items-center justify-end  lg:border-l-0">
-                  <div>
-                    <div className="py-8 px-6 md:px-12 md:py-16 lg:border-t-0 lg:py-0 lg:pr-0 lg:pl-6">
-                      <button
-                        onClick={logout}
-                        className="block px-6 py-3 rounded-lg bg-gradient-to-r from-sky-600 to-cyan-400 text-center text-white"
-                      >
-                        Logout
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-      </div>
-      <div></div>
+      <AdminSideNav />
+
       <div className="mt-32">
-        <h2 className="text-xl font-bold text-center mb-4">Order Table</h2>
+        <h2 className="text-xl font-bold text-center mb-4  bg-[#0890F3] text-white py-3">
+          Order Table
+        </h2>
         <div className="px-10">
           <Table dataSource={dataSource} columns={columns} />
         </div>
       </div>
+
+      <h2 className="text-xl font-bold text-center mb-4 bg-[#0890F3] text-white py-3">
+        Services Section
+      </h2>
+
+      <ServiceCreationandUpdation />
     </div>
   );
 }
