@@ -11,3 +11,9 @@ export const removeFromCart = (service) => {
     payload: service,
   };
 };
+
+export const clearCart = () => {
+  return {
+    type: "CLEAR_CART",
+  };
+};

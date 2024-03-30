@@ -6,7 +6,7 @@ const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TO_CART":
       const isAlreadyInCart = state.cartItems.some(
-        (item) => item.item === action.payload.item
+        (item) => item.id === action.payload.id
       );
       if (!isAlreadyInCart) {
         return {
@@ -20,6 +20,11 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         cartItems: state.cartItems.filter((item) => item !== action.payload),
+      };
+    case "CLEAR_CART":
+      return {
+        ...state,
+        cartItems: [],
       };
     default:
       return state;

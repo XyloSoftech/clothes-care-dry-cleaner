@@ -1,25 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Input, Button, Row } from "antd";
 import { serverTimestamp } from "firebase/firestore";
-
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, addDoc,collection} from "firebase/firestore";
 import { firebaseConfig } from "../../firebaseConfig";
 import { sendEmail } from "../../utills/emailSend";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCart } from "../redux/action";
+
+const { TextArea } = Input;
+
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const { TextArea } = Input;
-
 const ContactUs = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [totalPrice, setTotalPrice] = useState();
   const [address, setAddress] = useState("");
   const [orderDetails, setOrderDetails] = useState("");
+  const cartItems = useSelector((state) => state.cartItems);
+  console.log(cartItems);
+  useEffect(() => {
+    if(cartItems.length > 0) {
+     
+    calculateTotalPrice();
+    }
+  }, [cartItems]);
 
+  const calculateTotalPrice = () => {
+    if (cartItems.length > 0) {
+      const total = cartItems.reduce((acc, item) => acc + item.price, 0);
+      const formattedTotal = total.toFixed(2); // Round to 2 decimal places
+      setTotalPrice(formattedTotal);
+    } else {
+      setTotalPrice("");
+    }
+  };
   const handleSubmit = async () => {
     if (!email.match(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/)) {
       Swal.fire({
@@ -30,26 +53,31 @@ const ContactUs = () => {
       return;
     }
 
-    if (orderDetails.split(" ").length < 50) {
+    if (orderDetails.length < 10) {
       Swal.fire({
         icon: "error",
         title: "Insufficient order details",
-        text: "Please provide at least 50 words",
+        text: "Please provide at least 10 characters",
       });
       return;
     }
 
     try {
-      await setDoc(doc(db, "Orders", Date.now().toString()), {
+      // Construct service names string separated by commas
+      const serviceNames = cartItems.map((item) => item.name).join(", ");
+
+      const docRef = await addDoc(collection(db, "Orders"), {
         name,
         phone,
         email,
         address,
         orderDetails,
-        Status: false,
+        serviceNames: serviceNames || "", // Add service names to the document or an empty string
+        totalPrice: totalPrice !== "0.00" ? totalPrice : null, // Add total price to the document or null if it's "0.00"
+        status: "Pending" ,//,
         submittedAt: serverTimestamp(),
       });
-      await sendEmail(name, email, orderDetails);
+      await sendEmail(name, email, orderDetails, docRef.id);
       setName("");
       setPhone("");
       setEmail("");
@@ -61,9 +89,15 @@ const ContactUs = () => {
         title: "Success!",
         text: "Order details are submitted.",
       });
+      dispatch(clearCart()); // Clear cart state
     } catch (error) {
       console.error("Error writing document: ", error);
     }
+  };
+
+  const handleNavigateToServices = () => {
+    dispatch(clearCart()); // Clear cart state
+    navigate("/Services");
   };
 
   return (
@@ -143,7 +177,9 @@ const ContactUs = () => {
             Kindly ensure all fields are accurately filled with valid
             information
           </h1>
-          <label>Name</label>
+          <label>
+            Name<span style={{ color: "red" }}>*</span>
+          </label>
           <Input
             placeholder="Name"
             type="text"
@@ -151,7 +187,9 @@ const ContactUs = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <label>Phone</label>
+          <label>
+            Phone<span style={{ color: "red" }}>*</span>
+          </label>
           <Input
             placeholder="Phone Number"
             type="phone"
@@ -159,7 +197,9 @@ const ContactUs = () => {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
-          <label>Email</label>
+          <label>
+            Email<span style={{ color: "red" }}>*</span>
+          </label>
           <Input
             placeholder="Email"
             type="email"
@@ -168,7 +208,9 @@ const ContactUs = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label>Address</label>
+          <label>
+            Address<span style={{ color: "red" }}>*</span>
+          </label>
           <Input
             placeholder="Address"
             type="text"
@@ -177,7 +219,26 @@ const ContactUs = () => {
             onChange={(e) => setAddress(e.target.value)}
           />
 
-          <label>Order Details</label>
+          {cartItems.length > 0 && (
+            <div>
+              <label>Selected Services:</label>
+              <TextArea
+                value={cartItems.map((item) => item.name).join(", ")}
+                disabled
+              />
+            </div>
+          )}
+
+          {cartItems.length > 0 && (
+            <div>
+              <label>Total Price: £</label>
+              <Input value={totalPrice} disabled />
+            </div>
+          )}
+
+          <label>
+            Order Details<span style={{ color: "red" }}>*</span>
+          </label>
           <TextArea
             placeholder="Order Details"
             allowClear
@@ -186,13 +247,26 @@ const ContactUs = () => {
             onChange={(e) => setOrderDetails(e.target.value)}
           />
 
-          <Button
-            size="large"
-            className="block px-6  mt-2 rounded-lg bg-gradient-to-r from-sky-600 to-cyan-400 text-center text-white"
-            onClick={handleSubmit}
-          >
-            Submit
-          </Button>
+          <div className="flex gap-3 items-center">
+            {cartItems.length > 0 && (
+              <div className="text-center">
+                <Button
+                  size="large"
+                  className="block px-6  mt-2 rounded-lg bg-gradient-to-r from-sky-600 to-cyan-400 text-center text-white"
+                  onClick={handleNavigateToServices}
+                >
+                  Change Services
+                </Button>
+              </div>
+            )}
+            <Button
+              size="large"
+              className="block px-6  mt-2 rounded-lg bg-gradient-to-r from-sky-600 to-cyan-400 text-center text-white"
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
+          </div>
         </Col>
       </Row>
     </div>
