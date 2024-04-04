@@ -1,15 +1,17 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import { Button, Col, Row } from "antd";
-import Image1 from "../../images/freedomlaundry.avif";
-import Image2 from "../../images/order.avif";
 import WashImage from "../../images/wash_big.png";
 import DryCleaning from "../../images/dry_cleaning_big.png";
 import WashIron from "../../images/wash_and_iron_big.png";
 import { Card } from "antd";
 import { useNavigate } from "react-router-dom";
 import LottieComponent from "../lottie/LottieComponent";
+import ServiceAnimationLottie from "../lottie/ServiceAnimationLottie";
+import HourServiceLottie from "../lottie/HourServiceLottie";
+import Reviews from "./Reviews";
 const { Meta } = Card;
+
 const Home = () => {
   const Navigate = useNavigate();
   const navigateToServices = () => {
@@ -19,7 +21,7 @@ const Home = () => {
     {
       image: WashImage,
       alt: "no image found",
-      title: "Service wash",
+      title: "Service Wash",
       description:
         "Convenient laundry service, providing clean clothes without the hassle of washing and drying.",
     },
@@ -33,7 +35,7 @@ const Home = () => {
     {
       image: WashIron,
       alt: "no image found",
-      title: "Shirts service",
+      title: "Shirts Service",
       description:
         "Tailored cleaning process for shirts, maintaining quality, crispness, and professional appearance.",
     },
@@ -63,10 +65,12 @@ const Home = () => {
 
       <section className="text-center my-12">
         {/* Services */}
-        <h1 className="text_lato lg:text-4xl md:text-xl sm:text-5xl font-bold">
-          We collect, clean, and deliver
-          <br /> your laundry and dry cleaning.
-        </h1>
+        <div className="flex justify-center">
+          <i className="text_lato lg:text-4xl md:text-xl sm:text-5xl font-bold">
+            We collect, clean, and deliver
+            <br /> your laundry and dry cleaning.
+          </i>
+        </div>
 
         <Row className="mt-6 below_header">
           <Col sm={8} md={8} lg={8}>
@@ -108,15 +112,11 @@ const Home = () => {
 
         {/*  how it works portion */}
 
-        <Row className="items-center text-start mt-20">
-          <Col sm={24} md={24} lg={12} className="px-20">
-            <img
-              src={Image1}
-              alt="No image found"
-              // className="img-fluid w-1/2"
-            />
+        <Row className="items-center text-start mt-4">
+          <Col sm={24} md={24} lg={12} className="px-20 mt-3">
+            <ServiceAnimationLottie />
           </Col>
-          <Col sm={24} md={24} lg={12} className="px-20">
+          <Col sm={24} md={24} lg={12} className="px-20 mt-2">
             <p className="text-[grey] text-base mb-3 font-bold text_lato">
               FREEDOM FROM LAUNDRY
             </p>
@@ -128,18 +128,17 @@ const Home = () => {
               dry cleaning and ironing in London at a schedule that fits your
               lifestyle.
             </p>
-
-            {/* <p className="text-[#0890F3]">See How its Works ?</p> */}
           </Col>
-
-          <Col sm={24} md={24} lg={12} className="px-20 ">
+        </Row>
+        <Row className="items-center text-start custom_direction">
+          <Col sm={24} md={24} lg={12} className="px-20 mt-2">
             <p className="text-[grey] text-base mb-3 font-bold text_lato">
               24H TURNAROUND TIME
             </p>
             <h1 className="text_lato font-bold text-4xl mb-3">
               No need to plan in advance
             </h1>
-            <div className="flex items-center mt-3">
+            <div className="flex items-center mt-2">
               <img
                 alt="no image found"
                 src="https://prod-cdn.laundryheap.com/assets/landing/benefits/bag-4ce09f20854869392ff759b2698a6890b263730052076f348f7d5b12e357514a.svg"
@@ -160,45 +159,21 @@ const Home = () => {
 
             {/* <p className="text-[#0890F3]">See How its Works ?</p> */}
           </Col>
-          <Col sm={24} md={24} lg={12} className="px-20">
-            <img
-              src={Image2}
-              alt="No image found"
-              // className="img-fluid w-1/2"
-            />
+          <Col sm={24} md={24} lg={12} className="px-20 mt-2">
+            <HourServiceLottie />
           </Col>
-
-          {/* <Col sm={24} md={24} lg={12} className="px-20">
-            <img
-              src={Image1}
-              alt="No image found"
-              // className="img-fluid w-1/2"
-            />
-          </Col>
-          <Col sm={24} md={24} lg={12} className="px-20">
-            <p className="text-[grey] text-base mb-3 font-bold text_lato">
-              24/7 CUSTOMER SUPPORT
-            </p>
-            <h1 className="text_lato font-bold text-4xl mb-3">
-              We're here for you
-            </h1>
-            <p className="text-lg mb-3 text_lato font-normal">
-              Any change in delivery times or date, or if something goes wrong,
-              we are here. Our online customer support team will assist you day
-              and night.
-            </p>
-
-        
-          </Col> */}
         </Row>
 
         {/*  how it works portion End */}
 
         {/* Pricing Cards */}
         <div>
-          <h1 className="text_lato text-3xl font-semibold text-center my-10">
-            Our Services
-          </h1>
+          <div className="flex justify-center my-10">
+            <i className="text_lato text-3xl font-semibold text-center headings">
+              Our Services
+            </i>
+          </div>
+
           <Row className="items-center text-start">
             {services.map((service, index) => (
               <Col key={index} sm={24} md={24} lg={8} className="px-10">
@@ -225,6 +200,7 @@ const Home = () => {
           </Button>
         </div>
         {/* Pricing Cards */}
+        <Reviews />
       </section>
     </div>
   );
