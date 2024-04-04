@@ -83,9 +83,16 @@ const Navbar = () => {
                         </Link>
                       </li>
                       <li>
+                        <Link to="/howitworks">
+                          <span className="text-white text_lato relative lg:text-base  font-semibold">
+                            How it works
+                          </span>
+                        </Link>
+                      </li>
+                      <li>
                         <Link to="/Services">
                           <span className="text-white  text_lato relative lg:text-base  font-semibold">
-                            Prices & Services
+                            Services
                           </span>
                         </Link>
                       </li>
@@ -96,13 +103,6 @@ const Navbar = () => {
                           </span>
                         </Link>
                       </li>
-                      {/* <li>
-                        <Link to="/faq">
-                          <span className="text-white text_lato relative lg:text-base  font-semibold">
-                            How it works
-                          </span>
-                        </Link>
-                      </li> */}
                     </ul>
 
                     <Link to="/contact">

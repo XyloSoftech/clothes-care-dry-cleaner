@@ -1,17 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { Col, Input, Button, Row } from "antd";
 import { serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { initializeApp } from "firebase/app";
-import { getFirestore, addDoc,collection} from "firebase/firestore";
+import { getFirestore, addDoc, collection } from "firebase/firestore";
 import { firebaseConfig } from "../../firebaseConfig";
 import { sendEmail } from "../../utills/emailSend";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../redux/action";
 
 const { TextArea } = Input;
-
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -28,9 +28,8 @@ const ContactUs = () => {
   const cartItems = useSelector((state) => state.cartItems);
   console.log(cartItems);
   useEffect(() => {
-    if(cartItems.length > 0) {
-     
-    calculateTotalPrice();
+    if (cartItems.length > 0) {
+      calculateTotalPrice();
     }
   }, [cartItems]);
 
@@ -74,7 +73,7 @@ const ContactUs = () => {
         orderDetails,
         serviceNames: serviceNames || "", // Add service names to the document or an empty string
         totalPrice: totalPrice !== "0.00" ? totalPrice : null, // Add total price to the document or null if it's "0.00"
-        status: "Pending" ,//,
+        status: "Pending", //,
         submittedAt: serverTimestamp(),
       });
       await sendEmail(name, email, orderDetails, docRef.id);
@@ -177,7 +176,7 @@ const ContactUs = () => {
             Kindly ensure all fields are accurately filled with valid
             information
           </h1>
-          <label>
+          <label className="text-base font-semibold ">
             Name<span style={{ color: "red" }}>*</span>
           </label>
           <Input
@@ -187,7 +186,7 @@ const ContactUs = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <label>
+          <label className="text-base font-semibold mt-2">
             Phone<span style={{ color: "red" }}>*</span>
           </label>
           <Input
@@ -197,7 +196,7 @@ const ContactUs = () => {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
-          <label>
+          <label className="text-base font-semibold mt-2">
             Email<span style={{ color: "red" }}>*</span>
           </label>
           <Input
@@ -208,7 +207,7 @@ const ContactUs = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label>
+          <label className="text-base font-semibold mt-2">
             Address<span style={{ color: "red" }}>*</span>
           </label>
           <Input
@@ -221,7 +220,9 @@ const ContactUs = () => {
 
           {cartItems.length > 0 && (
             <div>
-              <label>Selected Services:</label>
+              <label className="text-base font-semibold mt-2">
+                Selected Services:
+              </label>
               <TextArea
                 value={cartItems.map((item) => item.name).join(", ")}
                 disabled
@@ -231,12 +232,14 @@ const ContactUs = () => {
 
           {cartItems.length > 0 && (
             <div>
-              <label>Total Price: £</label>
+              <label className="text-base font-semibold mt-2">
+                Total Price: £
+              </label>
               <Input value={totalPrice} disabled />
             </div>
           )}
 
-          <label>
+          <label className="text-base font-semibold mt-2">
             Order Details<span style={{ color: "red" }}>*</span>
           </label>
           <TextArea
