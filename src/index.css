@@ -17,7 +17,15 @@ body {
   .below_header {
     padding-left: 36px;
   }
+  .px-20 {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+  .custom_direction {
+    flex-direction: column-reverse !important;
+  }
 }
+
 .service_card_content .ant-card-body {
   text-align: -webkit-center;
 }
@@ -32,4 +40,9 @@ body {
 }
 .ant-list-item {
   margin-bottom: 0px;
+}
+.headings {
+  border-bottom: 3px solid #0890f3;
+  width: max-content;
+  margin: 20px 0px;
 }
