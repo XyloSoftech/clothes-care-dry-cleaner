@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Logo from "../../images/logo.png"
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,9 +28,9 @@ const Navbar = () => {
               <div className="relative z-30">
                 <Link to="/">
                   <img
-                    src="https://tailus.io/sources/blocks/navigation-layout/preview/images/logo.svg"
+                    src={Logo}
                     alt="logo-tailus"
-                    className="w-32"
+                    className="w-1/2"
                   />
                 </Link>
               </div>

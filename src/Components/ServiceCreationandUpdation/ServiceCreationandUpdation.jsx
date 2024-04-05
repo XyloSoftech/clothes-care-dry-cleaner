@@ -141,7 +141,7 @@ function ServiceCreationandUpdation() {
 
   return (
     <div>
-      <div className="flex justify-center pb-10">
+      {/* <div className="flex justify-center pb-10">
         <div className="max-w-[400px] px-10  ">
           <div className="flex flex-col justify-center gap-3">
             <h3 className=" font-bold text-center mb-4">Add a New Service</h3>
@@ -179,7 +179,7 @@ function ServiceCreationandUpdation() {
             </Button>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {services.length > 0 ? (
         <div>
@@ -207,7 +207,7 @@ function ServiceCreationandUpdation() {
                           <EyeOutlined /> <span>Show Details</span>
                         </div>
                       </Button>
-                      <Button
+                      {/* <Button
                         type="primary"
                         className="mt-4 bg-[#0890F3]"
                         onClick={() => handleEditModalOpen(service)} // Open edit modal on click
@@ -226,7 +226,7 @@ function ServiceCreationandUpdation() {
                           <DeleteOutlined />
                           <span>Remove</span>
                         </div>
-                      </Button>
+                      </Button> */}
                     </div>
                   </Card>
                 </Col>
