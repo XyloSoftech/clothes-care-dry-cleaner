@@ -15,6 +15,7 @@ const Services = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true); // State to track loading status
   const navigate = useNavigate();
+  console.log(services)
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "Service"), (snapshot) => {
@@ -48,8 +49,8 @@ const Services = () => {
 
           <div className="my-10">
             <Row>
-              <Col xs={24} sm={24} md={12} className="px-3">
-                <img src={ServicesImage} alt="no image found" />
+              <Col xs={24} sm={24} md={12} className="px-10">
+                <img src={ServicesImage} className="rounded-lg" alt="no image found" />
               </Col>
               <Col xs={24} sm={24} md={12} className="px-3">
                 <i className="text-xl font-medium">
@@ -81,9 +82,18 @@ const Services = () => {
             <Row gutter={[8, 16]}>
               {services.map((service, index) => (
                 <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8} key={index}>
-                  <Card>
+                  <Card 
+                  className="min-h-[446px]"
+                   cover={
+                    <img
+                      src={service.img}
+                    className=" h-[250px] rounded-xl object-fill  "
+                    />
+                  }
+                  >
                     <Meta
                       className="servicesCards"
+                      
                       title={service.name}
                       description={service.description}
                     />

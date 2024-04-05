@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import Logo from "../../images/logo.png"
 const Footer = () => {
   return (
     <div>
@@ -20,9 +20,10 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-2">
               <Link to="/">
                 <img
-                  src="https://tailus.io/sources/blocks/navigation-layout/preview/images/logo.svg"
+
+                  src={Logo}
                   alt="logo-tailus"
-                  className="w-32"
+                  className="w-1/2"
                 />
               </Link>
             </h3>
