@@ -30,7 +30,7 @@ const Navbar = () => {
                   <img
                     src={Logo}
                     alt="logo-tailus"
-                    className="w-1/2"
+                    className="w-1/3"
                   />
                 </Link>
               </div>

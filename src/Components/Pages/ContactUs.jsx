@@ -102,9 +102,11 @@ const ContactUs = () => {
   return (
     <div>
       <div className=" bg-[#0890F3] py-14 ">
-        <h1 className="text-center text-5xl font-semibold text_lato text-white">
-          Order Details
-        </h1>
+        <div className="flex justify-center">
+          <i className="text_lato text-4xl font-semibold text-center text-white">
+            Order Details
+          </i>
+        </div>
       </div>
 
       <Row className="my-10">
