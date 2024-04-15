@@ -14,7 +14,7 @@ const HowItWork = () => {
   return (
     <div>
       <Row className="items-center my-8">
-        <Col xs={24} sm={24} md={12} className="px-5">
+        <Col xs={24} sm={24} md={12} className="px-20">
           <i className="text-4xl font-bold">
             <span className="text-[#0890F3] text-bold ml-2 mr-2 font-bold text-justify">
               Clothes Care Dry Cleaners
@@ -23,7 +23,7 @@ const HowItWork = () => {
             <span className="font-semibold text-[#FFD06D]">London</span>
           </i>
         </Col>
-        <Col xs={24} sm={24} md={12} className="px-5">
+        <Col xs={24} sm={24} md={12} className="px-20 mt-2">
           <img src={ServicesImage} alt="no image found" />
         </Col>
       </Row>

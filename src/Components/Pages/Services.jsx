@@ -53,7 +53,7 @@ const Services = () => {
               <Col xs={24} sm={24} md={12} className="px-10">
                 <img src={ServicesImage} className="rounded-lg" alt="no image found" />
               </Col>
-              <Col xs={24} sm={24} md={12} className="px-3">
+              <Col xs={24} sm={24} md={12} className="px-3 services_text">
                 <i className="text-xl font-medium">
                   At
                   <span className="text-[#0890F3] text-bold ml-2 font-bold text-justify">

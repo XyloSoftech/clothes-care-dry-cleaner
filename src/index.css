@@ -24,6 +24,9 @@ body {
   .custom_direction {
     flex-direction: column-reverse !important;
   }
+  .services_text{
+    padding: 12px 22px ;
+  }
 }
 
 .service_card_content .ant-card-body {
@@ -45,4 +48,7 @@ body {
   border-bottom: 3px solid #0890f3;
   width: max-content;
   margin: 20px 0px;
+}
+.nav_listing > li{
+  text-wrap: nowrap !important;
 }

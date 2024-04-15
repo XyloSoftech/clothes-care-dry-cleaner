@@ -104,7 +104,7 @@ const ContactUs = () => {
       <div className=" bg-[#0890F3] py-14 ">
         <div className="flex justify-center">
           <i className="text_lato text-4xl font-semibold text-center text-white">
-            Order Details
+            Contact US / Order Details 
           </i>
         </div>
       </div>

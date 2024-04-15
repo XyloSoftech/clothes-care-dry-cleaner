@@ -44,7 +44,7 @@ const Home = () => {
   return (
     <div>
       {/* Header */}
-      <header className="flex justify-center items-center p-5 bg-[#0890F3]">
+      <header className="flex justify-center items-center p-5 bg-[#0890F3] lg:pt-0">
         <div className="container flex justify-center">
           <Row gutter={24} className="items-center">
             <Col sm={24} md={24} lg={12}>
@@ -65,6 +65,15 @@ const Home = () => {
 
       <section className="text-center my-12">
         {/* Services */}
+
+        <div className="my-5">
+            <Button type="danger"  onClick={() => Navigate("/contact")} size="large" className="rounded-lg bg-gradient-to-r from-red-400 to-red-600 text-center text-white">
+              Contact Us
+            </Button>
+            <Button type="primary" onClick={() => Navigate("/Services")} size="large" className="rounded-lg ml-2 bg-gradient-to-r from-sky-400 to-cyan-600 text-center text-white">
+              Avail Our Services
+            </Button>
+          </div>
         <div className="flex justify-center">
           <i className="text_lato lg:text-4xl md:text-xl sm:text-5xl font-bold">
             We collect, clean, and deliver
