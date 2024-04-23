@@ -37,16 +37,16 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
             <ul className="text-base space-y-2">
               <li>
-                <Link to="/about">Home</Link>
+                <Link to="/" target="_self">Home</Link>
               </li>
               <li>
-                <Link to="/services">Prices & Services</Link>
+                <Link to="/Services" target="_self">Prices & Services</Link>
               </li>
               <li>
-                <Link to="/blog">Contact us</Link>
+                <Link to="/contact" target="_self">Contact us</Link>
               </li>
               <li>
-                <Link to="/contact">How it works</Link>
+                <Link to="/howitworks" target="_self">How it works</Link>
               </li>
             </ul>
           </div>
@@ -69,12 +69,12 @@ const Footer = () => {
               Facebook
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.instagram.com/clothes_care_drycleaners/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-500"
             >
-              LinkedIn
+              Instagram
             </a>
           </div>
         </div>

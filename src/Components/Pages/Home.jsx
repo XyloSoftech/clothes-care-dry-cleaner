@@ -186,7 +186,7 @@ const Home = () => {
           <Row className="items-center text-start">
             {services.map((service, index) => (
               <Col key={index} sm={24} md={24} lg={8} className="px-10">
-                <Card hoverable className="service_card_content">
+                <Card hoverable className="service_card_content mt-3">
                   <img
                     src={service.image}
                     alt={service.alt}
