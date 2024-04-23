@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import {  useNavigate } from "react-router-dom";
+import Logo from "../../images/logo.png";
+
 function AdminSideNav() {
     const navigate = useNavigate();
     const logout = () => {
@@ -16,11 +18,7 @@ function AdminSideNav() {
           <div className="flex items-center justify-between">
             <div className="relative z-30">
               <a href="#">
-                <img
-                  src="https://tailus.io/sources/blocks/navigation-layout/preview/images/logo.svg"
-                  alt="logo-tailus"
-                  className="w-32"
-                />
+              <img src={Logo} alt="logo-tailus" className="w-1/4" />
               </a>
             </div>
             <h1 className="text-2xl font-bold text-center text-white ">
