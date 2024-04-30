@@ -10,7 +10,7 @@ import LottieComponent from "../lottie/LottieComponent";
 import ServiceAnimationLottie from "../lottie/ServiceAnimationLottie";
 import HourServiceLottie from "../lottie/HourServiceLottie";
 import Reviews from "./Reviews";
-const { Meta } = Card;
+// const { Meta } = Card;
 
 const Home = () => {
   const Navigate = useNavigate();
@@ -67,13 +67,23 @@ const Home = () => {
         {/* Services */}
 
         <div className="my-5">
-            <Button type="danger"  onClick={() => Navigate("/contact")} size="large" className="rounded-lg bg-gradient-to-r from-red-400 to-red-600 text-center text-white">
-              Contact Us
-            </Button>
-            <Button type="primary" onClick={() => Navigate("/Services")} size="large" className="rounded-lg ml-2 bg-gradient-to-r from-sky-400 to-cyan-600 text-center text-white">
-              Avail Our Services
-            </Button>
-          </div>
+          <Button
+            type="danger"
+            onClick={() => Navigate("/contact")}
+            size="large"
+            className="rounded-lg bg-gradient-to-r from-red-400 to-red-600 text-center text-white"
+          >
+            Contact Us
+          </Button>
+          <Button
+            type="primary"
+            onClick={() => Navigate("/Services")}
+            size="large"
+            className="rounded-lg ml-2 bg-gradient-to-r from-sky-400 to-cyan-600 text-center text-white"
+          >
+            Avail Our Services
+          </Button>
+        </div>
         <div className="flex justify-center">
           <i className="text_lato lg:text-4xl md:text-xl sm:text-5xl font-bold">
             We collect, clean, and deliver
@@ -193,7 +203,7 @@ const Home = () => {
                     className="w-1/2"
                   />
                   <p className="text-2xl font-medium my-4">{service.title}</p>
-                  <Meta description={service.description} />
+                  <p className="text-lg ">{service.description}</p>
                 </Card>
               </Col>
             ))}
