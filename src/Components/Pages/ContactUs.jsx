@@ -25,6 +25,7 @@ const ContactUs = () => {
   const [totalPrice, setTotalPrice] = useState();
   const [address, setAddress] = useState("");
   const [orderDetails, setOrderDetails] = useState("");
+  const [isSendingEmail, setIsSendingEmail] = useState(false);
   const cartItems = useSelector((state) => state.cartItems);
   const MIN_ORDER_DETAILS_LENGTH = 10;
   console.log(cartItems);
@@ -92,7 +93,9 @@ const ContactUs = () => {
       });
       
       // Send email and handle result
+      setIsSendingEmail(true);
       const emailResult = await sendEmail(name, email, orderDetails, docRef.id);
+      setIsSendingEmail(false);
       setName("");
       setPhone("");
       setEmail("");
@@ -118,6 +121,7 @@ const ContactUs = () => {
       }
       dispatch(clearCart()); // Clear cart state
     } catch (error) {
+      setIsSendingEmail(false);
       console.error("Error writing document: ", error);
     }
   };
@@ -304,9 +308,9 @@ const ContactUs = () => {
               size="large"
               className="block px-6  mt-2 rounded-lg bg-gradient-to-r from-sky-600 to-cyan-400 text-center text-white"
               onClick={handleSubmit}
-              disabled={!isFormValid()}
+              disabled={!isFormValid() || isSendingEmail}
             >
-              Submit
+              {isSendingEmail ? "Sending..." : "Submit"}
             </Button>
           </div>
         </Col>
