@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import { Col, Input, Button, Row } from "antd";
+import { Col, Input, Button, Row, message } from "antd";
 import { serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -26,6 +26,7 @@ const ContactUs = () => {
   const [address, setAddress] = useState("");
   const [orderDetails, setOrderDetails] = useState("");
   const cartItems = useSelector((state) => state.cartItems);
+  const MIN_ORDER_DETAILS_LENGTH = 10;
   console.log(cartItems);
   useEffect(() => {
     if (cartItems.length > 0) {
@@ -42,6 +43,19 @@ const ContactUs = () => {
       setTotalPrice("");
     }
   };
+
+  // Validation function to check if form is valid
+  const isFormValid = () => {
+    const isEmailValid = email.match(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/);
+    return (
+      name.trim() !== "" &&
+      phone.trim() !== "" &&
+      email.trim() !== "" &&
+      isEmailValid &&
+      address.trim() !== "" &&
+      orderDetails.trim().length >= MIN_ORDER_DETAILS_LENGTH
+    );
+  };
   const handleSubmit = async () => {
     if (!email.match(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/)) {
       Swal.fire({
@@ -52,11 +66,11 @@ const ContactUs = () => {
       return;
     }
 
-    if (orderDetails.length < 10) {
+    if (orderDetails.length < MIN_ORDER_DETAILS_LENGTH) {
       Swal.fire({
         icon: "error",
         title: "Insufficient order details",
-        text: "Please provide at least 10 characters",
+        text: `Please provide at least ${MIN_ORDER_DETAILS_LENGTH} characters`,
       });
       return;
     }
@@ -72,22 +86,36 @@ const ContactUs = () => {
         address,
         orderDetails,
         serviceNames: serviceNames || "", // Add service names to the document or an empty string
-        totalPrice: totalPrice !== "0.00" ? totalPrice : null, // Add total price to the document or null if it's "0.00"
+        totalPrice: totalPrice && totalPrice !== 0 && totalPrice !== "0.00" ? totalPrice : null, // Add total price to the document or null if it's "0.00"
         status: "Pending", //,
         submittedAt: serverTimestamp(),
       });
-      await sendEmail(name, email, orderDetails, docRef.id);
+      
+      // Send email and handle result
+      const emailResult = await sendEmail(name, email, orderDetails, docRef.id);
       setName("");
       setPhone("");
       setEmail("");
       setAddress("");
       setOrderDetails("");
-      Swal.fire({
-        icon: "success",
-        iconColor: "#0890F3",
-        title: "Success!",
-        text: "Order details are submitted.",
-      });
+      
+      if (emailResult.success) {
+        // Show toast notification for successful email
+        message.success("Confirmation email has been sent successfully!", 3);
+        Swal.fire({
+          icon: "success",
+          iconColor: "#0890F3",
+          title: "Success!",
+          text: "Order details are submitted and confirmation email has been sent to you. We will get back to you.",
+        });
+      } else {
+        Swal.fire({
+          icon: "warning",
+          iconColor: "#0890F3",
+          title: "Order Submitted",
+          text: `Order details are submitted successfully, but email could not be sent: ${emailResult.error}. Please check your email configuration.`,
+        });
+      }
       dispatch(clearCart()); // Clear cart state
     } catch (error) {
       console.error("Error writing document: ", error);
@@ -250,7 +278,15 @@ const ContactUs = () => {
             rows={4}
             value={orderDetails}
             onChange={(e) => setOrderDetails(e.target.value)}
+            showCount
+            maxLength={500}
+            status={orderDetails.length > 0 && orderDetails.length < MIN_ORDER_DETAILS_LENGTH ? "error" : ""}
           />
+          {orderDetails.length > 0 && orderDetails.length < MIN_ORDER_DETAILS_LENGTH && (
+            <div className="text-red-500 text-sm mt-1">
+              Please provide at least {MIN_ORDER_DETAILS_LENGTH} characters ({orderDetails.length}/{MIN_ORDER_DETAILS_LENGTH})
+            </div>
+          )}
 
           <div className="flex gap-3 items-center">
             {cartItems.length > 0 && (
@@ -268,6 +304,7 @@ const ContactUs = () => {
               size="large"
               className="block px-6  mt-2 rounded-lg bg-gradient-to-r from-sky-600 to-cyan-400 text-center text-white"
               onClick={handleSubmit}
+              disabled={!isFormValid()}
             >
               Submit
             </Button>

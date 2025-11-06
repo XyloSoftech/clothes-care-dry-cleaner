@@ -13,7 +13,9 @@ export async function sendEmail(toName, toEmail, orderDetails,orderid) {
       order_id:orderid,
     });
     console.log("Email successfully sent!");
+    return { success: true };
   } catch (error) {
     console.error("Failed to send email:", error);
+    return { success: false, error: error.text || error.message || "Unknown error" };
   }
 }
