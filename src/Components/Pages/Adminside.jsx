@@ -87,9 +87,9 @@ function Adminside() {
             <>
               {record.serviceNames && (
                 <p>
-                  <span className="font-bold">Service Names:</span>{" "}
-                  {record.serviceNames}
-                </p>
+                <span className="font-bold">Service Names:</span>{" "}
+                {record.serviceNames}
+              </p>
               )}
               <br />
               {record.totalPrice && (
@@ -108,6 +108,7 @@ function Adminside() {
       title: "Order Placed At",
       dataIndex: "submittedAt",
       key: "submittedAt",
+      responsive: ["lg"],
       render: (submittedAt) => {
         const date = new Date(submittedAt.seconds * 1000);
         return date.toLocaleString();
@@ -166,8 +167,17 @@ function Adminside() {
         <h2 className="text-xl font-bold text-center mb-4  bg-[#0890F3] text-white py-3">
           Order Table
         </h2>
-        <div className="px-10">
-          <Table dataSource={dataSource} columns={columns} />
+        <div className="px-4 md:px-10">
+          <Table 
+            dataSource={dataSource} 
+            columns={columns}
+            scroll={{ x: "max-content" }}
+            pagination={{
+              responsive: true,
+              showSizeChanger: true,
+              pageSizeOptions: ["10", "20", "50", "100"],
+            }}
+          />
         </div>
       </div>
 
